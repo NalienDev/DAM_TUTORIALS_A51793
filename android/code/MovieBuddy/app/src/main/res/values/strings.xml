@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Movie Buddy</string>
+    <string name="prompt_search_movie">Search for a movie or show...</string>
+    <string name="error_fetching_data">Error fetching movies. Please try again.</string>
+    <string name="no_results">No results found.</string>
+</resources>

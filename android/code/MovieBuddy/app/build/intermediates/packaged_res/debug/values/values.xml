@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="md_theme_dark_onPrimary">#003450</color>
+    <color name="md_theme_dark_onPrimaryContainer">#CBE6FF</color>
+    <color name="md_theme_dark_primary">#8FCDFF</color>
+    <color name="md_theme_dark_primaryContainer">#004B71</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_onPrimaryContainer">#001E30</color>
+    <color name="md_theme_light_primary">#006494</color>
+    <color name="md_theme_light_primaryContainer">#CBE6FF</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Movie Buddy</string>
+    <string name="error_fetching_data">Error fetching movies. Please try again.</string>
+    <string name="no_results">No results found.</string>
+    <string name="prompt_search_movie">Search for a movie or show...</string>
+    <style name="Base.Theme.MovieBuddy" parent="Theme.Material3.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+    </style>
+    <style name="Theme.MovieBuddy" parent="Base.Theme.MovieBuddy"/>
+</resources>

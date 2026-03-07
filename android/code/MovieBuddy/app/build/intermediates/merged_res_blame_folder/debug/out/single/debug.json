@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-merged_res-49:\\layout_fragment_movie_list.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-main-51:\\layout\\fragment_movie_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-merged_res-49:\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-main-51:\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "com.moviebuddy.app-merged_res-49:/layout_fragment_movie_list.xml.flat",
+        "source": "com.moviebuddy.app-main-51:/layout/fragment_movie_list.xml"
+    },
+    {
+        "merged": "com.moviebuddy.app-merged_res-49:/layout_item_rated_movie.xml.flat",
+        "source": "com.moviebuddy.app-main-51:/layout/item_rated_movie.xml"
+    },
+    {
+        "merged": "com.moviebuddy.app-merged_res-49:/menu_menu_home.xml.flat",
+        "source": "com.moviebuddy.app-main-51:/menu/menu_home.xml"
+    },
+    {
+        "merged": "com.moviebuddy.app-merged_res-49:/layout_fragment_rated_movies.xml.flat",
+        "source": "com.moviebuddy.app-main-51:/layout/fragment_rated_movies.xml"
+    },
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-merged_res-49:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-main-51:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-merged_res-49:\\layout_item_movie.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-main-51:\\layout\\item_movie.xml"
+    },
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-merged_res-49:\\layout_fragment_movie_detail.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\8.6\\com.moviebuddy.app-main-51:\\layout\\fragment_movie_detail.xml"
+    },
+    {
+        "merged": "com.moviebuddy.app-merged_res-49:/navigation_nav_graph.xml.flat",
+        "source": "com.moviebuddy.app-main-51:/navigation/nav_graph.xml"
+    }
+]

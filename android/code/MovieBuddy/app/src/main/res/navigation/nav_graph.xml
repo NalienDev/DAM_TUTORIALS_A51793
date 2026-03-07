@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/movieListFragment">
+
+    <fragment
+        android:id="@+id/movieListFragment"
+        android:name="com.moviebuddy.app.ui.home.MovieListFragment"
+        android:label="Movie Buddy"
+        tools:layout="@layout/fragment_movie_list">
+        <action
+            android:id="@+id/action_movieListFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_movieListFragment_to_ratedMoviesFragment"
+            app:destination="@id/ratedMoviesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.moviebuddy.app.ui.detail.MovieDetailFragment"
+        android:label="Movie Details"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ratedMoviesFragment"
+        android:name="com.moviebuddy.app.ui.rated.RatedMoviesFragment"
+        android:label="Rated Movies"
+        tools:layout="@layout/fragment_rated_movies">
+        <action
+            android:id="@+id/action_ratedMoviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+</navigation>
