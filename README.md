@@ -92,6 +92,3 @@ A aplicação necessita de guardar os ratings de forma a que resistam ao fechar 
 1. É possível abrir pelo **IntelliJ IDEA**.
 2. Fazer "Open Project" escolhendo o nível da pasta `DAM_TP1/kotlin/pom.xml`.
 3. O IntelliJ tratará de importar a configuração Maven e permitir a execução nativa. Em alternativa usar terminal (`mvn package` -> `java -jar ...`).
-
----
-_Nota: Trata-se de um projeto académico com propósitos educativos e de demonstração ao abrigo da unidade curricular DAM._
