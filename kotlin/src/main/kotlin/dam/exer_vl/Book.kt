@@ -25,6 +25,6 @@ open class Book(
         }
 
     init {
-        println("Book $title by $author has been added to the library.")
+        println("Book $title by $author created.")
     }
 }
