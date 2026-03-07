@@ -1,7 +1,5 @@
 package dam.exer_3
 
-import kotlin.math.round
-
 fun main() {
     dropBall(100f).forEach { println("%.2f".format(it) + "m") }
 }

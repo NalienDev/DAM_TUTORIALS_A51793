@@ -81,7 +81,6 @@ fun boolOperations() {
         val response = readln().trim()
         if (response.lowercase() == "x") break
 
-        // Handle unary NOT separately: !0 or !1
         if (response.startsWith("!")) {
             val operand = response.drop(1).trim().toIntOrNull()
             if (operand == null) {
