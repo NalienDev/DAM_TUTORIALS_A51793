@@ -253,7 +253,7 @@ For the Movie Buddy project, the repository was initialised via Antigravity's So
 
 ---
 
-## 15. AI Usage Disclosure (Mandatory)
+## 15. AI Usage Disclosure
 
 | Tool | How it was used |
 |---|---|
