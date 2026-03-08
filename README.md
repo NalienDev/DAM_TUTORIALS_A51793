@@ -237,7 +237,10 @@ For the Movie Buddy project, the repository was initialised via Antigravity's So
 
 ## 13. Difficulties and Lessons Learned
 
-TODO
+- **Adapting from Java to Kotlin**: Coming from a Java background, some of Kotlin's syntax and conventions were initially confusing. Simple things like how to define and run a `main` function, and understanding when and why to use curly braces `{}` — for example in lambda expressions, constructors, and init blocks — took some getting used to. Over time these patterns became more natural, and the conciseness of Kotlin compared to Java became one of its most appreciated aspects.
+- **Android layouts and constraints**: When working on the Hello World application in Android Studio, understanding what constraints were and how the ConstraintLayout system worked was not immediately obvious. Figuring out how to anchor views relative to each other and to the screen edges required some experimentation before it clicked.
+- **String resources and `strings.xml`**: The concept of extracting hardcoded strings into `strings.xml` was unfamiliar at first. It was not immediately clear why this was necessary or how the `@string/` reference system connected the XML layout to the resource file. After working through it, the purpose for internationalisation and maintainability became clear.
+- **API fetching in Movie Buddy**: Understanding the code responsible for consuming the TVMaze API was one of the bigger challenges. The combination of Retrofit interfaces, coroutines, and how the data flows from the repository up to the ViewModel and then to the UI required careful reading. Some Android Studio-specific patterns — such as `repeatOnLifecycle`, View Binding setup, and the Navigation Component — were also new and took time to understand properly.
 
 ---
 
