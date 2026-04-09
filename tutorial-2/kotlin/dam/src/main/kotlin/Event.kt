@@ -39,6 +39,22 @@ fun main(){
         }
     })
 
-    events.totalSpent("alice")
+    print("\n")
+
+
+    println("Total spent by alice: $${events.totalSpent("alice")}")
+    println("Total spent by bob: $${events.totalSpent("bob")}")
+
+    print("\n")
+
+    val username = "alice"
+    println("Events for $username:")
+    events.filterByUser(username).forEach {
+        when(it){
+            is Event.Login -> println("  Login (username=${it.username}, timestamp=${it.timestamp})")
+            is Event.Purchase -> println("  Purchase (usename=${it.username}, amount=${it.amount}, timestamp=${it.timestamp})")
+            is Event.Logout -> println("  Logout (username=${it.username}, timestamp=${it.timestamp})")
+        }
+    }
 
 }
