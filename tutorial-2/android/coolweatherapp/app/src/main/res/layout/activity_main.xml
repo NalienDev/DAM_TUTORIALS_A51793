@@ -11,8 +11,8 @@
         android:id="@+id/container"
         android:layout_width="413dp"
         android:layout_height="733dp"
-        android:background="?android:attr/windowBackground"
-        android:theme="@style/Theme.Day"
+        android:background="?attr/selectableItemBackground"
+        android:theme="@style/Theme.CoolWeatherApp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +55,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/seven"
-                    android:text="Pressure:"
-                    android:textColor="@color/black"
+                    android:text="@string/pressureText"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -68,7 +68,7 @@
                     android:text="Placeholder"
                     android:textAlignment="textEnd"
                     android:textAppearance="@style/Theme.CoolWeatherAPP"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -82,8 +82,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/seven"
-                    android:text="Wind Direction:"
-                    android:textColor="@color/black"
+                    android:text="@string/windDir"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:text="Placeholder"
                     android:textAlignment="textEnd"
                     android:textAppearance="@style/Theme.CoolWeatherAPP"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -109,8 +109,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/seven"
-                    android:text="Wind Speed:"
-                    android:textColor="@color/black"
+                    android:text="@string/windSpeed"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -122,7 +122,7 @@
                     android:text="Placeholder"
                     android:textAlignment="textEnd"
                     android:textAppearance="@style/Theme.CoolWeatherAPP"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -136,8 +136,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/seven"
-                    android:text="Temperature:"
-                    android:textColor="@color/black"
+                    android:text="@string/temp"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -149,7 +149,7 @@
                     android:text="Placeholder"
                     android:textAlignment="textEnd"
                     android:textAppearance="@style/Theme.CoolWeatherAPP"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -163,8 +163,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/seven"
-                    android:text="Time:"
-                    android:textColor="@color/black"
+                    android:text="@string/time"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -176,7 +176,7 @@
                     android:text="Placeholder"
                     android:textAlignment="textEnd"
                     android:textAppearance="@style/Theme.CoolWeatherAPP"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </TableRow>
         </TableLayout>
@@ -189,7 +189,7 @@
             android:backgroundTint="@color/teal_200"
             android:fontFamily="@font/seven"
             android:text="@string/updateText"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -216,8 +216,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/seven"
-                    android:text="Latitude:"
-                    android:textColor="@color/black"
+                    android:text="@string/latitude"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <EditText
@@ -225,14 +225,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/seven"
-                    android:hint="e.g. 38.7167"
+                    android:hint="e.g. 38.7"
+                    android:imeOptions="actionNext"
                     android:inputType="numberDecimal|numberSigned"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:background="@android:color/transparent"
-                    android:imeOptions="actionNext" />
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -245,8 +245,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/seven"
-                    android:text="Longitude:"
-                    android:textColor="@color/black"
+                    android:text="@string/longitude"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <EditText
@@ -254,14 +254,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/seven"
-                    android:hint="e.g. -9.1333"
+                    android:hint="e.g. -9.1"
+                    android:imeOptions="actionDone"
                     android:inputType="numberDecimal|numberSigned"
                     android:textAlignment="textEnd"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:background="@android:color/transparent"
-                    android:imeOptions="actionDone" />
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
             </TableRow>
 
         </TableLayout>

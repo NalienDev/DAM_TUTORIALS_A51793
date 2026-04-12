@@ -2,4 +2,12 @@
 <resources>
     <string name="app_name">Cool Weather APP</string>
     <string name="current_weather">Tempo Atual</string>
+    <string name="updateText">Atualizar</string>
+    <string name="pressureText">Pressão:</string>
+    <string name="windDir">Direção do Vento:</string>
+    <string name="windSpeed">Velocidade do Vento:</string>
+    <string name="temp">Temperatura:</string>
+    <string name="time">Hora:</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
 </resources>

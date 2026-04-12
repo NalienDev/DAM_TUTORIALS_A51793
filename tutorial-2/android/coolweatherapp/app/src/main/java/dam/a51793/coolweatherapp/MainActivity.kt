@@ -1,5 +1,7 @@
 package dam.a51793.coolweatherapp
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -9,17 +11,30 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.gson.Gson
-import java.io.InputStreamReader
-import java.net.URL
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
-    var day = true  // this is determined by the current time and sunrise/sunset hours
+    companion object {
+        var day = true // this is determined by the current time and sunrise/sunset hours
+    }
+    private lateinit var viewModel: WeatherViewModel
     private lateinit var latInput: EditText
     private lateinit var longInput: EditText
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) viewModel.fetchFromGPS()
+        else {
+            Toast.makeText(this, "Location denied, using default", Toast.LENGTH_SHORT).show()
+            viewModel.fetchWeatherData(38.7167f, -9.1333f)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -49,115 +64,101 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        viewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
+
         latInput  = findViewById(R.id.latView)
         longInput = findViewById(R.id.longView)
+
+        viewModel.weatherData.observe(this) { weather ->
+            updateUI(weather)
+        }
+
         latInput.setText("38.7167")
         longInput.setText("-9.1333")
 
-        fetchWeatherData(38.7167f, -9.1333f)
+        // Observe weather data changes
+        viewModel.weatherData.observe(this) { weather ->
+            updateUI(weather)
+        }
+
+        // Observe errors
+        viewModel.error.observe(this) { msg ->
+            Log.e("WeatherApp", msg)
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        }
+
+        // Only fetch GPS on first launch, not after recreate()
+        if (savedInstanceState == null) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+                viewModel.fetchFromGPS()
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            }
+        }
 
         findViewById<Button>(R.id.updateBtn).setOnClickListener {
             val lat  = latInput.text.toString().toFloatOrNull()
             val long = longInput.text.toString().toFloatOrNull()
-
             if (lat == null || long == null) {
-                Log.e("WeatherAPI", "Invalid coordinates entered")
                 Toast.makeText(this, "Enter valid coordinates", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            fetchWeatherData(lat, long)
+            viewModel.fetchWeatherData(lat, long)
         }
     }
 
-    private fun getCurrentHourIndex(): Int {
-        return java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
-    }
-
-    private fun isDay(weather: WeatherData): Boolean {
-        val sunrise = weather.daily.sunrise[0].substringAfter("T")
-        val sunset  = weather.daily.sunset[0].substringAfter("T")
-
-        val cal = java.util.Calendar.getInstance()
-        val nowMinutes = cal.get(java.util.Calendar.HOUR_OF_DAY) * 60 +
-                cal.get(java.util.Calendar.MINUTE)
-
-        fun timeToMinutes(t: String): Int {
-            val (h, m) = t.split(":").map { it.toInt() }
-            return h * 60 + m
-        }
-
-        return nowMinutes in timeToMinutes(sunrise)..timeToMinutes(sunset)
-    }
-
-    private fun WeatherAPI_Call(lat: Float, long: Float): WeatherData {
-        val reqString = buildString {
-            append("https://api.open-meteo.com/v1/forecast?")
-            append("latitude=$lat&longitude=$long&")
-            append("current_weather=true&")
-            append("hourly=temperature_2m,weathercode,pressure_msl,windspeed_10m&")
-            append("daily=sunrise,sunset&")
-            append("timezone=auto")
-        }
-
-        val url = URL(reqString)
-
-        url.openStream().use {
-            return Gson().fromJson(
-                InputStreamReader(it, "UTF-8"),
-                WeatherData::class.java
-            )
-        }
-    }
-
-    private fun fetchWeatherData(lat: Float, long: Float): Thread {
-        return Thread {
-            try {
-                val weather = WeatherAPI_Call(lat, long)
-                updateUI(weather)
-            } catch (e: Exception) {
-                Log.e("WeatherAPI", "Failed to fetch weather: ${e.message}")
+    private fun loadWeatherCodeMap(): Map<Int, WeatherCodeInfo> {
+        val map = HashMap<Int, WeatherCodeInfo>()
+        val allCodes = resources.getStringArray(R.array.weather_codes)
+        for (name in allCodes) {
+            val resId = resources.getIdentifier(name, "array", packageName)
+            if (resId == 0) {
+                Log.e("WeatherApp", "Could not find array resource: $name")
+                continue
             }
-        }.also { it.start() }
+            val entry = resources.getStringArray(resId)
+            if (entry.size < 3) {
+                Log.e("WeatherApp", "Array $name has fewer than 3 items")
+                continue
+            }
+            val code  = entry[0].toIntOrNull() ?: continue
+            val desc  = entry[1]
+            val image = entry[2]
+            map[code] = WeatherCodeInfo(code, desc, image)
+        }
+        return map
     }
 
     private fun updateUI(request: WeatherData) {
-        runOnUiThread {
-            val weatherImage: ImageView = findViewById(R.id.weatherImage)
-            val pressure: TextView = findViewById(R.id.pressureView)
-            val windDir: TextView = findViewById(R.id.windDirView)
-            val windSpeed: TextView = findViewById(R.id.windSpeedView)
-            val temperature: TextView = findViewById(R.id.temperatureView)
-            val time: TextView = findViewById(R.id.timeView)
-
-            val idx = getCurrentHourIndex()
-            day = isDay(request)
-
-            pressure.text = request.hourly.pressure_msl[idx].toString() + " hPa"
-            temperature.text = request.hourly.temperature_2m[idx].toString() + "°C"
-            time.text = request.hourly.time[idx]
-            windDir.text = request.current_weather.winddirection.toString()
-            windSpeed.text = request.current_weather.windspeed.toString()
-
-            val mapt = getWeatherCodeMap()
-            val wCode = mapt[request.current_weather.weathercode]
-
-            val wImage = when (wCode) {
-                WMO_WeatherCode.CLEAR_SKY,
-                WMO_WeatherCode.MAINLY_CLEAR,
-                WMO_WeatherCode.PARTLY_CLOUDY ->
-                    if (day) wCode?.image + "day" else wCode?.image + "night"
-
-                else -> wCode?.image
-            }
-
-            val res = resources
-            weatherImage.setImageResource(R.drawable.fog)
-
-            val resID = res.getIdentifier(wImage, "drawable", packageName)
-            val drawable = getDrawable(resID)
-
-            weatherImage.setImageDrawable(drawable)
+        val newDay = viewModel.isDay(request)
+        if (newDay != day) {
+            day = newDay
+            recreate()
+            return
         }
+
+        val idx = viewModel.getCurrentHourIndex(request)
+
+        findViewById<TextView>(R.id.pressureView).text = request.hourly.pressure_msl[idx].toString() + " hPa"
+        findViewById<TextView>(R.id.temperatureView).text = request.hourly.temperature_2m[idx].toString() + "°C"
+        findViewById<TextView>(R.id.timeView).text = request.hourly.time[idx]
+        findViewById<TextView>(R.id.windDirView).text = request.current_weather.winddirection.toString()
+        findViewById<TextView>(R.id.windSpeedView).text = request.current_weather.windspeed.toString()
+
+        latInput.setText(request.latitude)
+        longInput.setText(request.longitude)
+
+        val wcMap  = loadWeatherCodeMap()
+        val wCode  = wcMap[request.current_weather.weathercode]
+        val wImage = when (request.current_weather.weathercode) {
+            0, 1, 2 -> if (day) wCode?.image + "day" else wCode?.image + "night"
+            else    -> wCode?.image
+        }
+
+        val weatherImage = findViewById<ImageView>(R.id.weatherImage)
+        val resID = resources.getIdentifier(wImage, "drawable", packageName)
+        val drawable = getDrawable(resID)
+        weatherImage.setImageDrawable(drawable)
     }
 }
