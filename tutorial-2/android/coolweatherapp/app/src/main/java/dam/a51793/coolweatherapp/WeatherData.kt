@@ -5,9 +5,14 @@ data class WeatherData(
     var longitude: String,
     var timezone: String,
     var current_weather: CurrentWeather,
-    var hourly: Hourly
+    var hourly: Hourly,
+    var daily: Daily
 )
 
+data class Daily(
+    var sunrise: ArrayList<String>,   // format: "2024-01-10T07:45"
+    var sunset: ArrayList<String>     // format: "2024-01-10T17:30"
+)
 data class CurrentWeather(
     var temperature: Float,
     var windspeed: Float,
