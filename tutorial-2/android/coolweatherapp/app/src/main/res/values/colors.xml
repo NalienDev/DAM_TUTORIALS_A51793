@@ -4,8 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="viewBG">#FF000000</color>
     <color name="WeatherLabel">#FFFFFFFF</color>
-    <color name="purple_500">#FFFFFFFF</color>
-    <color name="purple_700">#FFFFFFFF</color>
-    <color name="teal_200">#FFFFFFFF</color>
-    <color name="teal_700">#FFFFFFFF</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="purple_700">#7B1FA2</color>
+    <color name="teal_200">#80CBC4</color>
+    <color name="teal_700">#00796B</color>
 </resources>

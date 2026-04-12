@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Cool Weather APP</string>
-    <string name="current_weather" />
+    <string name="current_weather" >Current Weather</string>
+    <string name="pressureValue" >Placeholder</string>
 </resources>
