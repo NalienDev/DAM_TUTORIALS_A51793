@@ -3,7 +3,7 @@
 Course: Desenvolvimento de Aplicações Móveis (DAM)
 Student: Lucas Filipe
 Date: March 08, 2026
-Repository URL: https://github.com/NalienDev/DAM_TP1/
+Repository URL: https://github.com/NalienDev/DAM_TUTORIALS_A51793
 
 ---
 
