@@ -1,0 +1,17 @@
+R_DEF: Internal format may change without notice
+local
+id btnAll
+id btnFavorites
+id fabFavorite
+id imageViewDog
+id imgFullScreenDog
+id progressBar
+id recyclerViewDogs
+id swipeRefreshLayout
+id textViewBreed
+id toggleGroup
+id tvDetailBreed
+layout activity_details
+layout activity_main
+layout item_dog
+mipmap ic_launcher

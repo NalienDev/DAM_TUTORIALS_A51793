@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-debug-40:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-main-42:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-debug-40:\\layout_activity_details.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-main-42:\\layout\\activity_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-debug-40:\\layout_item_dog.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-main-42:\\layout\\item_dog.xml"
+    },
+    {
+        "merged": "com.example.dailydog.app-debug-40:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.dailydog.app-main-42:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-debug-40:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\lucas\\.gradle\\daemon\\9.0.0\\com.example.dailydog.app-main-42:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    }
+]
