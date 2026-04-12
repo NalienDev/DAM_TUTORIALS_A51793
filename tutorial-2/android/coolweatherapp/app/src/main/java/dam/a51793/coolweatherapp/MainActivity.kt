@@ -3,8 +3,11 @@ package dam.a51793.coolweatherapp
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,11 +18,10 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
     var day = true  // this is determined by the current time and sunrise/sunset hours
+    private lateinit var latInput: EditText
+    private lateinit var longInput: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
-        val lat = 38.7167f
-        val long = -9.1333f
-
-        fetchWeatherData(lat, long)
+        super.onCreate(savedInstanceState)
 
         when (resources.configuration.orientation) {
             Configuration.ORIENTATION_PORTRAIT -> {
@@ -39,13 +41,32 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        latInput  = findViewById(R.id.latView)
+        longInput = findViewById(R.id.longView)
+        latInput.setText("38.7167")
+        longInput.setText("-9.1333")
+
+        fetchWeatherData(38.7167f, -9.1333f)
+
+        findViewById<Button>(R.id.updateBtn).setOnClickListener {
+            val lat  = latInput.text.toString().toFloatOrNull()
+            val long = longInput.text.toString().toFloatOrNull()
+
+            if (lat == null || long == null) {
+                Log.e("WeatherAPI", "Invalid coordinates entered")
+                Toast.makeText(this, "Enter valid coordinates", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            fetchWeatherData(lat, long)
         }
     }
 
@@ -93,14 +114,6 @@ class MainActivity : AppCompatActivity() {
         return Thread {
             try {
                 val weather = WeatherAPI_Call(lat, long)
-
-                // Print key values to Logcat to verify the API is working
-                Log.d("WeatherAPI", "Temp: ${weather.current_weather.temperature}°C")
-                Log.d("WeatherAPI", "Wind: ${weather.current_weather.windspeed} km/h")
-                Log.d("WeatherAPI", "Weather code: ${weather.current_weather.weathercode}")
-                Log.d("WeatherAPI", "Pressure (12h): ${weather.hourly.pressure_msl[12]} hPa")
-                Log.d("WeatherAPI", "Time: ${weather.current_weather.time}")
-
                 updateUI(weather)
             } catch (e: Exception) {
                 Log.e("WeatherAPI", "Failed to fetch weather: ${e.message}")
@@ -118,13 +131,13 @@ class MainActivity : AppCompatActivity() {
             val time: TextView = findViewById(R.id.timeView)
 
             val idx = getCurrentHourIndex()
-            day = isDay(request)               // set the class-level day var
+            day = isDay(request)
 
-            pressure.text    = request.hourly.pressure_msl[idx].toString() + " hPa"
+            pressure.text = request.hourly.pressure_msl[idx].toString() + " hPa"
             temperature.text = request.hourly.temperature_2m[idx].toString() + "°C"
-            time.text        = request.hourly.time[idx]
-            windDir.text     = request.current_weather.winddirection.toString()
-            windSpeed.text   = request.current_weather.windspeed.toString()
+            time.text = request.hourly.time[idx]
+            windDir.text = request.current_weather.winddirection.toString()
+            windSpeed.text = request.current_weather.windspeed.toString()
 
             val mapt = getWeatherCodeMap()
             val wCode = mapt[request.current_weather.weathercode]
@@ -145,7 +158,6 @@ class MainActivity : AppCompatActivity() {
             val drawable = getDrawable(resID)
 
             weatherImage.setImageDrawable(drawable)
-            // TODO ...
         }
     }
 }

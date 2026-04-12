@@ -11,7 +11,7 @@
         android:id="@+id/container"
         android:layout_width="413dp"
         android:layout_height="733dp"
-        android:background="@drawable/sunny_bg"
+        android:background="?android:attr/windowBackground"
         android:theme="@style/Theme.Day"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,17 +34,21 @@
 
         <TableLayout
             android:id="@+id/information"
-            android:layout_width="377dp"
-            android:layout_height="129dp"
+            android:layout_width="383dp"
+            android:layout_height="163dp"
             android:layout_marginTop="16dp"
-            android:background="@android:drawable/screen_background_light_transparent"
+            android:alpha="1"
+            android:background="@drawable/rounded_bg"
             android:backgroundTint="@color/teal_200"
             android:stretchColumns="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weatherImage">
 
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -54,6 +58,7 @@
                     android:text="Pressure:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/pressureView"
                     android:layout_width="0dp"
@@ -67,7 +72,10 @@
                     android:textStyle="bold" />
             </TableRow>
 
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -77,6 +85,7 @@
                     android:text="Wind Direction:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/windDirView"
                     android:layout_width="0dp"
@@ -90,7 +99,10 @@
                     android:textStyle="bold" />
             </TableRow>
 
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -100,6 +112,7 @@
                     android:text="Wind Speed:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/windSpeedView"
                     android:layout_width="0dp"
@@ -113,7 +126,10 @@
                     android:textStyle="bold" />
             </TableRow>
 
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -123,6 +139,7 @@
                     android:text="Temperature:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/temperatureView"
                     android:layout_width="0dp"
@@ -136,7 +153,10 @@
                     android:textStyle="bold" />
             </TableRow>
 
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -146,6 +166,7 @@
                     android:text="Time:"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/timeView"
                     android:layout_width="0dp"
@@ -164,13 +185,85 @@
             android:id="@+id/updateBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="156dp"
             android:backgroundTint="@color/teal_200"
             android:fontFamily="@font/seven"
             android:text="@string/updateText"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/information" />
+
+        <TableLayout
+            android:id="@+id/latLongLayout"
+            android:layout_width="380dp"
+            android:layout_height="73dp"
+            android:background="@drawable/rounded_bg"
+            android:backgroundTint="@color/teal_200"
+            app:layout_constraintBottom_toTopOf="@+id/updateBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/information">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/seven"
+                    android:text="Latitude:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/latView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/seven"
+                    android:hint="e.g. 38.7167"
+                    android:inputType="numberDecimal|numberSigned"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/seven"
+                    android:text="Longitude:"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/longView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/seven"
+                    android:hint="e.g. -9.1333"
+                    android:inputType="numberDecimal|numberSigned"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionDone" />
+            </TableRow>
+
+        </TableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
