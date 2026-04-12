@@ -10,8 +10,8 @@ data class WeatherData(
 )
 
 data class Daily(
-    var sunrise: ArrayList<String>,   // format: "2024-01-10T07:45"
-    var sunset: ArrayList<String>     // format: "2024-01-10T17:30"
+    var sunrise: ArrayList<String>,
+    var sunset: ArrayList<String>
 )
 data class CurrentWeather(
     var temperature: Float,
