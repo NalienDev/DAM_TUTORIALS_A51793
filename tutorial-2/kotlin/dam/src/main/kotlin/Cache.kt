@@ -31,7 +31,7 @@ class Cache<K: Any, V: Any> {
         return map.toMap()
     }
 
-    fun filterValues(predicate: (V) -> Boolean): Map<K, V> {
+    fun filterValues(predicate: (V) -> Boolean): Map<K,  V> {
         return map.filterValues(predicate).toMap()
     }
 }
@@ -49,8 +49,8 @@ fun main(){
     println("getOrPut \"kotlin\": ${wordFrequencyCache.getOrPut("kotlin") { 1 }}")
     println("getOrPut \"java\": ${wordFrequencyCache.getOrPut("java") { 0 }}")
     println("Size after getOrPut: ${wordFrequencyCache.size()}")
-    println("Transform \"kotlin\" (+1): ${wordFrequencyCache.transform("kotlin") { it + 1 }}") // add 1 to its original value
-    println("Transform \"cobol\" (+1): ${wordFrequencyCache.transform("cobol") { it + 1 }}") // "cobol" is not a key in the map so no changes made
+    println("Transform \"kotlin\" (+1): ${wordFrequencyCache.transform("kotlin") { it + 1 }}")
+    println("Transform \"cobol\" (+1): ${wordFrequencyCache.transform("cobol") { it + 1 }}")
     println("Snapshot: ${wordFrequencyCache.snapshot()}")
     println("Words with count greater than zero: ${wordFrequencyCache.filterValues{it > 0} }")
 
