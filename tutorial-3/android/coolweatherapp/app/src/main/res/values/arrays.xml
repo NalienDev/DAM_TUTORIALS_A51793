@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="weather_codes">
+        <item>wc_0</item>
+        <item>wc_1</item>
+        <item>wc_2</item>
+        <item>wc_3</item>
+        <item>wc_45</item>
+        <item>wc_48</item>
+        <item>wc_51</item>
+        <item>wc_53</item>
+        <item>wc_55</item>
+        <item>wc_61</item>
+        <item>wc_63</item>
+        <item>wc_65</item>
+        <item>wc_71</item>
+        <item>wc_73</item>
+        <item>wc_75</item>
+        <item>wc_80</item>
+        <item>wc_81</item>
+        <item>wc_82</item>
+        <item>wc_95</item>
+        <item>wc_99</item>
+    </string-array>
+
+    <string-array name="wc_0">  <item>0</item>  <item>Clear Sky</item>             <item>clear_</item>          </string-array>
+    <string-array name="wc_1">  <item>1</item>  <item>Mainly Clear</item>          <item>mostly_clear_</item>   </string-array>
+    <string-array name="wc_2">  <item>2</item>  <item>Partly Cloudy</item>         <item>partly_cloudy_</item>  </string-array>
+    <string-array name="wc_3">  <item>3</item>  <item>Overcast</item>              <item>cloudy</item>          </string-array>
+    <string-array name="wc_45"> <item>45</item> <item>Fog</item>                   <item>fog</item>             </string-array>
+    <string-array name="wc_48"> <item>48</item> <item>Rime Fog</item>              <item>fog</item>             </string-array>
+    <string-array name="wc_51"> <item>51</item> <item>Light Drizzle</item>         <item>drizzle</item>         </string-array>
+    <string-array name="wc_53"> <item>53</item> <item>Moderate Drizzle</item>      <item>drizzle</item>         </string-array>
+    <string-array name="wc_55"> <item>55</item> <item>Dense Drizzle</item>         <item>drizzle</item>         </string-array>
+    <string-array name="wc_61"> <item>61</item> <item>Slight Rain</item>           <item>rain_light</item>      </string-array>
+    <string-array name="wc_63"> <item>63</item> <item>Moderate Rain</item>         <item>rain</item>            </string-array>
+    <string-array name="wc_65"> <item>65</item> <item>Heavy Rain</item>            <item>rain_heavy</item>      </string-array>
+    <string-array name="wc_71"> <item>71</item> <item>Slight Snow</item>           <item>snow_light</item>      </string-array>
+    <string-array name="wc_73"> <item>73</item> <item>Moderate Snow</item>         <item>snow</item>            </string-array>
+    <string-array name="wc_75"> <item>75</item> <item>Heavy Snow</item>            <item>snow_heavy</item>      </string-array>
+    <string-array name="wc_80"> <item>80</item> <item>Slight Showers</item>        <item>rain_light</item>      </string-array>
+    <string-array name="wc_81"> <item>81</item> <item>Moderate Showers</item>      <item>rain</item>            </string-array>
+    <string-array name="wc_82"> <item>82</item> <item>Violent Showers</item>       <item>rain_heavy</item>      </string-array>
+    <string-array name="wc_95"> <item>95</item> <item>Thunderstorm</item>          <item>tstorm</item>          </string-array>
+    <string-array name="wc_99"> <item>99</item> <item>Thunderstorm w/ Hail</item>  <item>tstorm</item>          </string-array>
+</resources>
