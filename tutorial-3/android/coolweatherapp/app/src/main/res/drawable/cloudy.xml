@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <!-- Back cloud (darker) -->
+  <path android:fillColor="#AAAAAA" android:pathData="M5,4 h8 v5 h-8 z" />
+  <path android:fillColor="#AAAAAA" android:pathData="M6,3 h5 v1 h-5 z" />
+  <!-- Front cloud (lighter) -->
+  <path android:fillColor="#E5E5E5" android:pathData="M1,7 h11 v5 h-11 z" />
+  <path android:fillColor="#FFFFFF" android:pathData="M2,6 h8 v1 h-8 z" />
+  <path android:fillColor="#FFFFFF" android:pathData="M4,5 h5 v1 h-5 z" />
+  <!-- Shadow bottom -->
+  <path android:fillColor="#BBBBBB" android:pathData="M2,10 h10 v2 h-10 z" />
+</vector>

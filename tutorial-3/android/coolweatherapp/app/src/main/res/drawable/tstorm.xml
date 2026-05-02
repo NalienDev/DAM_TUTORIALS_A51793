@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <!-- Dark storm cloud -->
+  <path android:fillColor="#777777" android:pathData="M1,2 h14 v5 h-14 z" />
+  <path android:fillColor="#999999" android:pathData="M2,1 h9 v1 h-9 z" />
+  <path android:fillColor="#555555" android:pathData="M1,5 h14 v2 h-14 z" />
+  <!-- Lightning bolt (pixel zigzag) -->
+  <path android:fillColor="#FFD02F" android:pathData="M8,8 h3 v2 h-3 z" />
+  <path android:fillColor="#FFD02F" android:pathData="M6,10 h3 v2 h-3 z" />
+  <path android:fillColor="#FFD02F" android:pathData="M7,12 h3 v3 h-3 z" />
+  <!-- Lightning highlight -->
+  <path android:fillColor="#FFFFFF" android:pathData="M9,8 h1 v1 h-1 z" />
+  <path android:fillColor="#FFFFFF" android:pathData="M7,10 h1 v1 h-1 z" />
+  <!-- Rain alongside bolt -->
+  <path android:fillColor="#0072F5" android:pathData="M2,9 h1 v4 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M13,9 h1 v4 h-1 z" />
+</vector>

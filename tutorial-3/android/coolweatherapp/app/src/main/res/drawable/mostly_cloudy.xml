@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <!-- Small sun peeking top-right -->
+  <path android:fillColor="#FFD02F" android:pathData="M11,2 h3 v3 h-3 z" />
+  <path android:fillColor="#E1C612" android:pathData="M12,3 h1 v1 h-1 z" />
+  <!-- Main cloud -->
+  <path android:fillColor="#CCCCCC" android:pathData="M3,7 h10 v5 h-10 z" />
+  <path android:fillColor="#FFFFFF" android:pathData="M4,6 h7 v1 h-7 z" />
+  <path android:fillColor="#FFFFFF" android:pathData="M5,5 h4 v1 h-4 z" />
+  <!-- Cloud shadow -->
+  <path android:fillColor="#AAAAAA" android:pathData="M4,10 h9 v2 h-9 z" />
+</vector>

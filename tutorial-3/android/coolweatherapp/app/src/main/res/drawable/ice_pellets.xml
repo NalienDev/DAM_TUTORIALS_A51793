@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <!-- Ice streaks (diagonal-ish using pixel steps) -->
+  <path android:fillColor="#D5DEE8" android:pathData="M2,2 h1 v2 h-1 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M3,4 h1 v2 h-1 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M7,1 h1 v2 h-1 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M8,3 h1 v2 h-1 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M12,2 h1 v2 h-1 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M13,4 h1 v2 h-1 z" />
+  <!-- Ice pellet squares (small blue blocks) -->
+  <path android:fillColor="#0072F5" android:pathData="M3,9 h2 v2 h-2 z" />
+  <path android:fillColor="#0072F5" android:pathData="M8,10 h2 v2 h-2 z" />
+  <path android:fillColor="#0072F5" android:pathData="M12,9 h2 v2 h-2 z" />
+  <path android:fillColor="#0072F5" android:pathData="M5,13 h2 v2 h-2 z" />
+  <path android:fillColor="#0072F5" android:pathData="M10,12 h2 v2 h-2 z" />
+</vector>

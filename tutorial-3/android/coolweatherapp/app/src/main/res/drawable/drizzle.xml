@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <!-- Cloud -->
+  <path android:fillColor="#CCCCCC" android:pathData="M2,4 h12 v5 h-12 z" />
+  <path android:fillColor="#FFFFFF" android:pathData="M3,3 h8 v1 h-8 z" />
+  <path android:fillColor="#AAAAAA" android:pathData="M3,7 h11 v2 h-11 z" />
+  <!-- Drizzle drops (sparse, small) -->
+  <path android:fillColor="#0072F5" android:pathData="M4,11 h1 v1 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M8,11 h1 v1 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M12,11 h1 v1 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M6,13 h1 v1 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M10,13 h1 v1 h-1 z" />
+</vector>

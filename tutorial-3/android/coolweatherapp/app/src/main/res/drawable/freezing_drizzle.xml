@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <!-- Ice crystal row at top (wavy blocky line) -->
+  <path android:fillColor="#D5DEE8" android:pathData="M1,4 h2 v2 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M4,3 h2 v2 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M7,4 h2 v2 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M10,3 h2 v2 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M13,4 h2 v2 h-2 z" />
+  <!-- Blue drizzle drops below -->
+  <path android:fillColor="#0072F5" android:pathData="M3,8 h1 v2 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M7,8 h1 v2 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M11,8 h1 v2 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M5,11 h1 v2 h-1 z" />
+  <path android:fillColor="#0072F5" android:pathData="M9,11 h1 v2 h-1 z" />
+</vector>

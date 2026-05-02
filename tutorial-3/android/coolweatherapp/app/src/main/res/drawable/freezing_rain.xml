@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <!-- Ice crystals top -->
+  <path android:fillColor="#D5DEE8" android:pathData="M1,3 h2 v3 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M4,2 h2 v3 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M7,3 h2 v3 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M10,2 h2 v3 h-2 z" />
+  <path android:fillColor="#D5DEE8" android:pathData="M13,3 h2 v3 h-2 z" />
+  <!-- Rain drops (taller) -->
+  <path android:fillColor="#0072F5" android:pathData="M2,8 h2 v4 h-2 z" />
+  <path android:fillColor="#0072F5" android:pathData="M6,8 h2 v6 h-2 z" />
+  <path android:fillColor="#0072F5" android:pathData="M10,8 h2 v4 h-2 z" />
+</vector>
