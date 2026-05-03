@@ -11,9 +11,8 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
-import dam.a51793.coolweatherapp.ui.WeatherUI
+import dam.a51793.coolweatherapp.ui.WeatherScreen
 import dam.a51793.coolweatherapp.ui.theme.CoolWeatherAppTheme
 import dam.a51793.coolweatherapp.viewmodel.WeatherViewModel
 
@@ -44,7 +43,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoolWeatherAppTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    WeatherUI(weatherViewModel = weatherViewModel)
+                    WeatherScreen(weatherViewModel = weatherViewModel)
                 }
             }
         }

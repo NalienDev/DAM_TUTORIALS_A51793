@@ -1,8 +1,6 @@
 package dam.a51793.coolweatherapp.ui
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,56 +13,56 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dam.a51793.coolweatherapp.R
 import dam.a51793.coolweatherapp.viewmodel.WeatherViewModel
 
 @Composable
-fun WeatherUI(weatherViewModel: WeatherViewModel = viewModel()) {
+fun WeatherScreen(weatherViewModel: WeatherViewModel = viewModel()) {
 
-    val uiState          by weatherViewModel.uiState.collectAsState()
-    val configuration    = LocalConfiguration.current
-    val context          = LocalContext.current
+    val uiState       by weatherViewModel.uiState.collectAsState()
+    val configuration = LocalConfiguration.current
+    val context       = LocalContext.current
 
-    val weatherMap  = remember(context) { loadWeatherCodeMap(context) }
-    val wCodeInfo   = weatherMap[uiState.weathercode]
-    val wImageName  = resolveWeatherImageName(uiState.weathercode, wCodeInfo, uiState.isDay)
-    val wIcon       = wImageName?.let {
+    val weatherMap   = remember(context) { loadWeatherCodeMap(context) }
+    val wCodeInfo    = weatherMap[uiState.weathercode]
+    val wImageName   = resolveWeatherImageName(uiState.weathercode, wCodeInfo, uiState.isDay)
+    val wIcon        = wImageName?.let {
         context.resources.getIdentifier(it, "drawable", context.packageName)
     } ?: 0
     val weatherLabel = wCodeInfo?.description ?: "Unknown (code ${uiState.weathercode})"
 
+    val onLatitudeChange:  (String) -> Unit = { v -> v.toFloatOrNull()?.let { weatherViewModel.updateLatitude(it) } }
+    val onLongitudeChange: (String) -> Unit = { v -> v.toFloatOrNull()?.let { weatherViewModel.updateLongitude(it) } }
+    val onUpdateClick = { weatherViewModel.fetchWeather() }
+
     if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-        LandscapeWeatherUI(
-            wIcon            = wIcon,
-            weatherLabel     = weatherLabel,
-            uiState          = uiState,
-            onLatitudeChange = { newValue -> newValue.toFloatOrNull()?.let { weatherViewModel.updateLatitude(it) } },
-            onLongitudeChange= { newValue -> newValue.toFloatOrNull()?.let { weatherViewModel.updateLongitude(it) } },
-            onUpdateClick    = { weatherViewModel.fetchWeather() },
+        LandscapeWeatherScreen(
+            wIcon             = wIcon,
+            weatherLabel      = weatherLabel,
+            uiState           = uiState,
+            onLatitudeChange  = onLatitudeChange,
+            onLongitudeChange = onLongitudeChange,
+            onUpdateClick     = onUpdateClick,
         )
     } else {
-        PortraitWeatherUI(
-            wIcon            = wIcon,
-            weatherLabel     = weatherLabel,
-            uiState          = uiState,
-            onLatitudeChange = { newValue -> newValue.toFloatOrNull()?.let { weatherViewModel.updateLatitude(it) } },
-            onLongitudeChange= { newValue -> newValue.toFloatOrNull()?.let { weatherViewModel.updateLongitude(it) } },
-            onUpdateClick    = { weatherViewModel.fetchWeather() },
+        PortraitWeatherScreen(
+            wIcon             = wIcon,
+            weatherLabel      = weatherLabel,
+            uiState           = uiState,
+            onLatitudeChange  = onLatitudeChange,
+            onLongitudeChange = onLongitudeChange,
+            onUpdateClick     = onUpdateClick,
         )
     }
 }
 
 @Composable
-fun PortraitWeatherUI(
+fun PortraitWeatherScreen(
     wIcon: Int,
     weatherLabel: String,
     uiState: WeatherUIState,
@@ -78,8 +76,9 @@ fun PortraitWeatherUI(
             .verticalScroll(rememberScrollState())
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(4.dp))
 
         Text(
             text = stringResource(R.string.current_weather),
@@ -87,17 +86,13 @@ fun PortraitWeatherUI(
             color = MaterialTheme.colorScheme.primary,
         )
 
-        Spacer(Modifier.height(12.dp))
+        WeatherCard(
+            wIcon        = wIcon,
+            weatherLabel = weatherLabel,
+            uiState      = uiState,
+        )
 
-        WeatherIconSection(wIcon, weatherLabel, iconSize = 120.dp)
-
-        Spacer(Modifier.height(16.dp))
-
-        WeatherInfoBlock(uiState)
-
-        Spacer(Modifier.height(24.dp))
-
-        CoordinatesInput(
+        CoordinatesInputSection(
             latitude          = uiState.latitude,
             longitude         = uiState.longitude,
             onLatitudeChange  = onLatitudeChange,
@@ -108,12 +103,12 @@ fun PortraitWeatherUI(
 
         uiState.errorMessage?.let { ErrorBanner(it) }
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(4.dp))
     }
 }
 
 @Composable
-fun LandscapeWeatherUI(
+fun LandscapeWeatherScreen(
     wIcon: Int,
     weatherLabel: String,
     uiState: WeatherUIState,
@@ -128,32 +123,32 @@ fun LandscapeWeatherUI(
         horizontalArrangement = Arrangement.spacedBy(24.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        // Left: icon + info
         Column(
             modifier = Modifier
                 .weight(1f)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Text(
                 text = stringResource(R.string.current_weather),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.primary,
             )
-            Spacer(Modifier.height(8.dp))
-            WeatherIconSection(wIcon, weatherLabel, iconSize = 96.dp)
-            Spacer(Modifier.height(12.dp))
-            WeatherInfoBlock(uiState)
+            WeatherCard(
+                wIcon        = wIcon,
+                weatherLabel = weatherLabel,
+                uiState      = uiState,
+            )
         }
 
-        // Right: coordinates input
         Column(
             modifier = Modifier
                 .weight(1f)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            CoordinatesInput(
+            CoordinatesInputSection(
                 latitude          = uiState.latitude,
                 longitude         = uiState.longitude,
                 onLatitudeChange  = onLatitudeChange,
@@ -167,81 +162,7 @@ fun LandscapeWeatherUI(
 }
 
 @Composable
-private fun WeatherInfoBlock(uiState: WeatherUIState) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            InfoRow(stringResource(R.string.temp),      "%.1f°C".format(uiState.temperature))
-            InfoRow(stringResource(R.string.time),      uiState.time)
-            InfoRow(stringResource(R.string.windSpeed), "%.1f km/h".format(uiState.windspeed))
-            InfoRow(stringResource(R.string.windDir),   "${uiState.winddirection}°")
-            InfoRow(stringResource(R.string.pressureText), "%.0f hPa".format(uiState.seaLevelPressure))
-            InfoRow(stringResource(R.string.latitude),  "%.4f".format(uiState.latitude))
-            InfoRow(stringResource(R.string.longitude), "%.4f".format(uiState.longitude))
-        }
-    }
-}
-
-@Composable
-private fun InfoRow(label: String, value: String) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        Text(
-            text = value,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
-    }
-}
-
-@Composable
-private fun WeatherIconSection(wIcon: Int, label: String, iconSize: Dp) {
-    if (wIcon != 0) {
-        Image(
-            painter = painterResource(id = wIcon),
-            contentDescription = label,
-            modifier = Modifier.size(iconSize),
-        )
-    } else {
-        Box(
-            modifier = Modifier
-                .size(iconSize)
-                .background(
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    shape = RoundedCornerShape(12.dp),
-                ),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text("?", fontSize = 32.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
-    }
-    Spacer(Modifier.height(4.dp))
-    Text(
-        text = label,
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textAlign = TextAlign.Center,
-    )
-}
-
-@Composable
-private fun CoordinatesInput(
+private fun CoordinatesInputSection(
     latitude: Float,
     longitude: Float,
     onLatitudeChange: (String) -> Unit,
@@ -298,7 +219,7 @@ private fun CoordinatesInput(
 
 @Composable
 private fun ErrorBanner(message: String) {
-    Spacer(Modifier.height(8.dp))
+    Spacer(Modifier.height(4.dp))
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
