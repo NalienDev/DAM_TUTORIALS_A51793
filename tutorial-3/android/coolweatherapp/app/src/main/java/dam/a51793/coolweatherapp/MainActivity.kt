@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import dam.a51793.coolweatherapp.ui.WeatherUI
 import dam.a51793.coolweatherapp.ui.theme.CoolWeatherAppTheme
@@ -26,15 +27,12 @@ class MainActivity : ComponentActivity() {
         if (granted) {
             weatherViewModel.fetchFromGPS()
         }
-        // If denied, the ViewModel already fetched with default coords in init {}
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Request GPS on first launch; ViewModel.init already kicked off a
-        // default fetch so the UI is never empty while we wait for permission.
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
         ) {
