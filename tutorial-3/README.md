@@ -274,7 +274,7 @@ All work was committed progressively to the Git repository. The multi-module Dai
 
 ## 13. Difficulties and Lessons Learned
 
-<!-- To be completed -->
+
 
 ## 14. Future Improvements
 
