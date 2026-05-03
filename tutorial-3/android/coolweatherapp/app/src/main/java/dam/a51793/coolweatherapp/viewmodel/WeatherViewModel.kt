@@ -12,6 +12,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dam.a51793.coolweatherapp.data.WeatherApiClient
 import dam.a51793.coolweatherapp.data.WeatherData
+import dam.a51793.coolweatherapp.ui.SavedLocation
 import dam.a51793.coolweatherapp.ui.WeatherUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,11 +30,48 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun updateLatitude(lat: Float) {
-        _uiState.update { it.copy(latitude = lat) }
+        _uiState.update { it.copy(latitude = lat, activeLocationName = null) }
     }
 
     fun updateLongitude(long: Float) {
-        _uiState.update { it.copy(longitude = long) }
+        _uiState.update { it.copy(longitude = long, activeLocationName = null) }
+    }
+
+    fun updateCoordinates(lat: Float, lng: Float) {
+        _uiState.update { it.copy(latitude = lat, longitude = lng, activeLocationName = null) }
+        fetchWeather()
+    }
+
+    fun saveLocation(name: String) {
+        val lat = _uiState.value.latitude
+        val lng = _uiState.value.longitude
+        if (name.isBlank()) return
+        val newLocation = SavedLocation(name = name.trim(), latitude = lat, longitude = lng)
+        _uiState.update { state ->
+            // Replace if same name already exists, otherwise append
+            val updated = state.savedLocations.filterNot { it.name == newLocation.name } + newLocation
+            state.copy(savedLocations = updated, activeLocationName = newLocation.name)
+        }
+    }
+
+    fun selectSavedLocation(location: SavedLocation) {
+        _uiState.update {
+            it.copy(
+                latitude            = location.latitude,
+                longitude           = location.longitude,
+                activeLocationName  = location.name,
+            )
+        }
+        fetchWeather()
+    }
+
+    fun deleteSavedLocation(location: SavedLocation) {
+        _uiState.update { state ->
+            val updated = state.savedLocations.filterNot { it.name == location.name }
+            val activeName = if (state.activeLocationName == location.name) null
+            else state.activeLocationName
+            state.copy(savedLocations = updated, activeLocationName = activeName)
+        }
     }
 
     fun fetchWeather() {
@@ -65,8 +103,9 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    @RequiresPermission(anyOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     fun fetchFromGPS() {
-        val ctx    = getApplication<Application>()
+        val ctx     = getApplication<Application>()
         val hasFine = ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION)
         if (hasFine != PackageManager.PERMISSION_GRANTED) {
             _uiState.update { it.copy(errorMessage = "Location permission not granted") }
@@ -78,8 +117,9 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         if (location != null) {
             _uiState.update {
                 it.copy(
-                    latitude  = location.latitude.toFloat(),
-                    longitude = location.longitude.toFloat(),
+                    latitude           = location.latitude.toFloat(),
+                    longitude          = location.longitude.toFloat(),
+                    activeLocationName = null,
                 )
             }
         } else {

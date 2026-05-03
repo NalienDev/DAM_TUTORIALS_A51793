@@ -1,5 +1,11 @@
 package dam.a51793.coolweatherapp.ui
 
+data class SavedLocation(
+    val name: String,
+    val latitude: Float,
+    val longitude: Float,
+)
+
 data class WeatherUIState(
     val latitude: Float = 38.7167f,
     val longitude: Float = -9.1333f,
@@ -12,4 +18,6 @@ data class WeatherUIState(
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
     val isDay: Boolean = true,
-)
+    val savedLocations: List<SavedLocation> = emptyList(),
+    val activeLocationName: String? = null
+    )

@@ -15,6 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoolWeatherApp">
+        <activity android:name="dam.a51793.coolweatherapp.ui.LocationPickerActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAdQ8c1c-eOc92Uj0gj1mezaYmIg8CcA5I" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

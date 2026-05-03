@@ -1,0 +1,31 @@
+# Android build artifacts
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Kotlin
+*.class
+
+# Gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+
+# App-specific
+*.jks
+*.keystore
+
+# Misc
+build_err*.txt
+build_output*.txt

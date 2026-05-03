@@ -9,4 +9,10 @@
     <string name="time">Time:</string>
     <string name="latitude">Latitude:</string>
     <string name="longitude">Longitude:</string>
+    <string name="pick_location">Pick Location</string>
+    <string name="save_location">Save Location</string>
+    <string name="location_name">Location Name</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

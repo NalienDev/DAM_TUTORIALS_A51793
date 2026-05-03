@@ -10,4 +10,9 @@
     <string name="windSpeed">Velocidade do Vento:</string>
     <string name="temp">Temperatura:</string>
     <string name="time">Hora:</string>
+    <string name="pick_location">Escolher Local</string>
+    <string name="save_location">Salvar Local</string>
+    <string name="location_name">Nome do Local</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
 </resources>
