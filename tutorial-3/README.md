@@ -274,7 +274,13 @@ All work was committed progressively to the Git repository. The multi-module Dai
 
 ## 13. Difficulties and Lessons Learned
 
+**Kotlin Annotation Processing — Gradle Configuration**
 
+An initial difficulty was aligning the Kotlin and Java versions across the `build.gradle.kts` files in each module of `GreetingProcessorProject`. Mismatches between `kotlinOptions.jvmTarget` and the Java toolchain version caused build failures that were not immediately clear from the error output. Resolving this required explicitly matching these versions across all modules.
+
+**Jetpack Compose — Writing Composables and UI Previews**
+
+Getting started with Jetpack Compose was challenging coming from an XML background. Understanding how to structure composables and how state flows through the UI took some adjustment. Using `@Preview` in Android Studio also required some learning, as preview composables need to be parameterless and self-contained to render correctly in the IDE.
 
 ## 14. Future Improvements
 
